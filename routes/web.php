@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Vendor\VendorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RedirectIfAuthenticated as MiddlewareRedirectIfAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,17 +85,26 @@ Route::middleware('auth', 'role:admin')->group(function () {
 
 
           });
+          //all  product
           Route::controller(ProductController::class)->group(function(){
 
             Route::get("add/product",'addProduct')->name('add.product');
             Route::get("all/product",'allProduct')->name('all.product');
             Route::post("store/product",'StoreProduct')->name('store.product');
+            Route::get("edit/product/{id}",'EditProduct')->name('edit.product');
+            Route::post("update/product",'UpdateProduct')->name('update.product');
+            Route::post("update/product/thumbnail",'UpdateProductThumbnail')->name('update.product.thumbnail');
+            Route::post("update/product/multiimg",'UpdateProductMultiImg')->name('update.product.multiimg');
+            Route::get("product/delete/{id}",'productDelete')->name('update.product.delete');
+            Route::get("product/inactive/{id}",'productInactive')->name('product.inactive');
+            Route::get("product/active/{id}",'productActive')->name('product.active');
+            Route::get("product/onedeleted/{id}",'SingleProductDelete')->name('oneProduct.delete');
 
 
         });
 });
 
-Route::get('admin/login',[AdminController::class,'login'])->name('admin.login');
+Route::get('admin/login',[AdminController::class,'login'])->name('admin.login')->middleware(MiddlewareRedirectIfAuthenticated::class);
 
 
 
@@ -107,7 +117,7 @@ Route::middleware('auth', 'role:vendor')->group(function () {
     Route::post('vendor/update/password', [VendorController::class, 'updatePassword'])->name('vendor.update.password');
     Route::post('vendor/update/profile', [VendorController::class, 'updateProfile'])->name('vendor.update.profile');
 });
-Route::get('vendor/login',[VendorController::class,'login'])->name('vendor.login');
+Route::get('vendor/login',[VendorController::class,'login'])->name('vendor.login')->middleware(MiddlewareRedirectIfAuthenticated::class);
 Route::get('become/vendor',[VendorController::class,'become_vendor'])->name('become.vendor');
 Route::post('vendor/registration',[VendorController::class,'vendorRegistration'])->name('vendor.registration');
 

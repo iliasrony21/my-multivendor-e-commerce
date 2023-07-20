@@ -1,5 +1,6 @@
 @extends('admin.master')
   @section('admin')
+
   <script src="{{asset('backend')}}/assets/js/jquery.min.js"></script>
   <div class="page-content">
 				<!--breadcrumb-->
@@ -10,7 +11,7 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">All products</li>
+								<li class="breadcrumb-item active" aria-current="page">All Product  <span class="badge rounded-pill bg-danger"> {{ count($products) }} </span> </li>
 							</ol>
 						</nav>
 					</div>
@@ -21,7 +22,7 @@
 					<div class="main-body">
 						<div class="row">
 
-							<div class="col-lg-8 offset-2">
+							<div class="col-lg-12 ">
 
 
                                 <div class="card">
@@ -51,12 +52,34 @@
                                                 <td>{{ $product->product_name }} </td>
                                                 <td>{{ $product->selling_price }}</td>
                                                 <td>{{ $product->product_qty }}</td>
-                                                <td>{{ $product->discount_price }}</td>
-
-                                                <td>{{ $product->status }}</td>
                                                 <td>
-                                                    <a class="btn btn-primary btn-sm" href="">Edit</a>
-                                                    <a class="btn btn-danger btn-sm deleted" href="">Delete</a>
+                                                    @if($product->discount_price == NULL)
+                                                    <span class="badge rounded-pill bg-info">No Discount</span>
+                                                    @else
+                                                    @php
+                                                    $amount = $product->selling_price - $product->discount_price;
+                                                    $discount = ($amount/$product->selling_price) * 100;
+                                                    @endphp
+                                                   <span class="badge rounded-pill bg-danger"> {{ round($discount) }}%</span>
+                                                    @endif
+                                                            </td>
+
+                                                            <td> @if($product->status == 1)
+                                                                    <span class="badge rounded-pill bg-success">Active</span>
+                                                                    @else
+                                                                    <span class="badge rounded-pill bg-danger">InActive</span>
+                                                                    @endif
+                                                                </td>
+                                                <td>
+                                                    <a class="btn btn-primary " href="{{ route('edit.product',$product->id) }}" title="Edit Data"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a class="btn btn-danger  deleted" href="{{ route('oneProduct.delete',$product->id) }}" title="Delete Data"><i class="fa-solid fa-trash"></i></a>
+                                                    <a href="" class="btn btn-warning" title="Details Page"> <i class="fa fa-eye"></i> </a>
+
+                                                    @if($product->status == 1)
+                                                    <a href="{{ route('product.inactive', $product->id) }}" class="btn btn-primary" title="Inactive"> <i class="fa-solid fa-thumbs-down"></i> </a>
+                                                    @else
+                                                    <a href="{{ route('product.active', $product->id) }}" class="btn btn-primary" title="Active"> <i class="fa-solid fa-thumbs-up"></i> </a>
+                                                    @endif
                                                 </td>
                                                </tr>
                                                 @endforeach
