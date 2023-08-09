@@ -24,7 +24,7 @@ class CategoryController extends Controller
             $image = $request->file('category_image');
             $customName = rand().".".$image->getClientOriginalExtension();
             $path = public_path('uploads/category/'.$customName);
-            "Image"::make($image)->resize('100 100')->save($path);
+            "Image"::make($image)->resize('80 80')->save($path);
             $category->category_image = $customName;
 
         }
@@ -59,7 +59,7 @@ class CategoryController extends Controller
             $image = $request->file('category_image');
             $customName = rand().".".$image->getClientOriginalExtension();
             $path = public_path('uploads/category/'.$customName);
-            "Image"::make($image)->resize('100 100')->save($path);
+            "Image"::make($image)->resize('80 80')->save($path);
             $category->category_image = $customName;
             $category->category_name = $request->category_name;
             $category->category_slug = Str::slug($request->category_name);

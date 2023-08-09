@@ -15,9 +15,14 @@
 							</ol>
 						</nav>
 					</div>
-
+                    <div class="ms-auto">
+						<div class="btn-group">
+		                  <a href="{{ route('add.product') }}" class="btn btn-primary mb-3 ml-5">Add Product</a>
+						</div>
+					</div>
 				</div>
 				<!--end breadcrumb-->
+
 				<div class="container">
 					<div class="main-body">
 						<div class="row">
@@ -27,7 +32,7 @@
 
                                 <div class="card">
 									<div class="card-body">
-                                        <table class="col-lg-12">
+                                    <table id="example" class="table table-striped table-bordered" style="width:100%">
                                             <thead>
 
                                             <tr>

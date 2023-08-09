@@ -32,16 +32,12 @@
 					<div class="main-body">
 						<div class="row">
 
-							<div class="col-lg-8 offset-2">
-                                <!-- @if(session('successstatus'))
-                                <div class="alert alert-success">{{ session('successstatus') }}</div>
-                                @elseif(session('error'))
-                                <div class="alert alert-warning">{{ session('error') }}</div>
-                                @endif -->
+							<div class="col-lg-12">
+
 
                                 <div class="card">
 									<div class="card-body">
-                                        <table class="col-lg-12">
+                                        <table id="example"  style="width:100%">
                                             <thead>
 
                                             <tr>

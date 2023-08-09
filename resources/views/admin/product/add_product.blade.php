@@ -68,7 +68,7 @@
               <div class="mb-3">
                 <label for="inputProductDescription" class="form-label">Long Description</label>
 
-				<textarea id="mytextarea" name="long_descp">Hello, World!</textarea>
+				<textarea id="mytextarea" name="long_descp"></textarea>
 				</div>
 
               <div class="form-group mb-3">
@@ -277,7 +277,7 @@ function mainThumbUrl(input){
           var data = $(this)[0].files; //this file data
 
           $.each(data, function(index, file){ //loop though each file
-              if(/(\.|\/)(gif|jpe?g|png|webp)$/i.test(file.type)){ //check supported file type
+              if(/(\.|\/)(gif|jpe?g|png|webp|jfif)$/i.test(file.type)){ //check supported file type
                   var fRead = new FileReader(); //new filereader
                   fRead.onload = (function(file){ //trigger function on successful read
                   return function(e) {
