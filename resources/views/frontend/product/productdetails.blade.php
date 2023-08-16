@@ -45,7 +45,7 @@
                                 @else
                                     <span class="stock-status out-stock"> Stock Out </span>
                                 @endif
-                                    <h2 class="title-detail">{{ $product->product_name }}</h2>
+                                    <h2 class="title-detail" id="dpname">{{ $product->product_name }}</h2>
                                     <div class="product-detail-rating">
                                         <div class="product-rate-cover text-end">
                                             <div class="product-rate d-inline-block">
@@ -86,7 +86,7 @@
                                     @else
                                     <div class="attr-detail attr-size mb-30">
                                         <strong class="mr-10"style="width:50px">Size : </strong>
-                                        <select  class="form-control unicase-form-control" id="size">
+                                        <select  class="form-control unicase-form-control" id="dsize">
                                             <option selected='' disabled='' value="">Choose size</option>
                                             @foreach($product_size as $size)
                                             <option value="{{ $size }}">{{ ucwords($size) }}</option>
@@ -101,7 +101,7 @@
                                     @else
                                     <div class="attr-detail attr-size mb-30">
                                         <strong class="mr-10" style="width:50px">Color : </strong>
-                                        <select  class="form-control unicase-form-control" id="color">
+                                        <select  class="form-control unicase-form-control" id="dcolor">
                                             <option selected='' disabled='' value="">Choose color</option>
                                             @foreach($product_color as $color)
                                             <option value="{{ $color }}">{{ ucwords($color) }}</option>
@@ -115,13 +115,14 @@
                                     <div class="detail-extralink mb-50">
                                         <div class="detail-qty border radius">
                                             <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                            <input type="text" name="quantity" class="qty-val" value="1" min="1">
+                                            <input type="text" name="quantity" id="dqty" class="qty-val" value="1" min="1">
                                             <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                         </div>
                                         <div class="product-extra-link2">
-                                            <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                            <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
+                                            <button type="submit" class="button button-add-to-cart" onclick="AddToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                            <a aria-label="Add To Wishlist" class="action-btn" ><i class="fi-rs-heart" id="{{$product->id}}" onclick="addToWishlist(this.id)"></i></a>
+                                            <a aria-label="Compare" class="action-btn" id="{{ $product->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
                                         </div>
                                     </div>
                                     @if($product->vendor_id == NULL)
@@ -458,9 +459,9 @@
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="fi-rs-shuffle"></i></a>
+                                                <a aria-label="Add To Wishlist" class="action-btn" ><i class="fi-rs-heart" id="{{$product->id}}" onclick="addToWishlist(this.id)"></i></a>
+                                            <a aria-label="Compare" class="action-btn" id="{{ $product->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
+                                            <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"  id="{{ $product->id }}" onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                                                 </div>
 
                                                 @php

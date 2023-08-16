@@ -1,7 +1,7 @@
 @php
 $products = App\Models\Product::where('featured',1)->orderBy('id','ASC')->limit(6)->get();
 @endphp
-<!-- //feaature product  -->
+<!-- //feature product  -->
 <section class="section-padding pb-5">
             <div class="container">
                 <div class="section-title wow animate__animated animate__fadeIn">
@@ -34,9 +34,9 @@ $products = App\Models\Product::where('featured',1)->orderBy('id','ASC')->limit(
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)" > <i class="fi-rs-eye"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onClick="productView(this.id)" > <i class="fi-rs-eye"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"  id="{{$product->id}}" onClick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Compare" class="action-btn small hover-up"id="{{ $product->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
                                                 </div>
                                                 @php
                                                 $amount = $product->selling_price - $product->discount_price;

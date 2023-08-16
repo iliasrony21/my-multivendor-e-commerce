@@ -5,10 +5,14 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Vendor\VendorController;
 use App\Http\Controllers\Vendor\VendorProductController;
 use Illuminate\Support\Facades\Route;
@@ -118,6 +122,17 @@ Route::middleware('auth', 'role:admin')->group(function () {
 
 
         });
+         // coupon All Route
+Route::controller(CouponController::class)->group(function(){
+    Route::get('/all/coupon' , 'AllCoupon')->name('all.coupon');
+    Route::get('/add/coupon' , 'AddCoupon')->name('add.coupon');
+    Route::post('/store/coupon' , 'StoreCoupon')->name('coupon.store');
+    Route::get('/edit/coupon/{id}' , 'EditCoupon')->name('edit.coupon');
+    Route::post('/update/coupon' , 'UpdateCoupon')->name('update.coupon');
+    Route::get('/delete/coupon/{id}' , 'DeleteCoupon')->name('delete.coupon');
+
+
+});
 });
 
 Route::get('admin/login',[AdminController::class,'login'])->name('admin.login')->middleware(MiddlewareRedirectIfAuthenticated::class);
@@ -178,7 +193,49 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/category/details/{id}/{slug}', [IndexController::class, 'catViewDetails']);
     Route::get('/subcategory/details/{id}/{slug}', [IndexController::class, 'subCatViewDetails']);
     Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewModal']);
+// Add to cart store
+    Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+//mini cart get data
 
+    Route::get('/product/mini/cart', [CartController::class, 'AddToMiniCart']);
+//remove mini cart
+    Route::get('/product/remove/minicart/{rowId}', [CartController::class, 'removeMiniCart']);
+// Details Add to cart store
+Route::post('/dcart/data/store/{id}', [CartController::class, 'DetailsAddToCart']);
+//add to wishlist
+Route::post('/product/wishlist/{product_id}', [WishlistController::class, 'addToWishlist']);
+/// Add to Compare
+Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
+
+///////All Routes for user ///////////////
+Route::middleware('auth', 'role:user')->group(function () {
+//wishlist All route
+Route::controller(WishlistController::class)->group(function(){
+    Route::get("/wishlist",'wishlistPage')->name('wishlist');
+    Route::get("/product/wishlist/view",'wishlistViewPage')->name('wishlistview');
+    Route::get("/remove/wishlist/{id}",'wishlistRemove')->name('wishlistRemove');
+
+      });
+
+       // Compare All Route
+Route::controller(CompareController::class)->group(function(){
+    Route::get('/compare' , 'AllCompare')->name('compare');
+    Route::get('/get-compare-product' , 'GetCompareProduct');
+    Route::get('/compare-remove/{id}' , 'CompareRemove');
+
+
+});
+ // Cart All Route
+ Route::controller(CartController::class)->group(function(){
+    Route::get('/mycart' , 'MyCart')->name('mycart');
+    Route::get('/get-cart-product' , 'GetCartProduct');
+    Route::get('/cart-remove/{rowId}' , 'CartRemove');
+    Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
+    Route::get('/cart-increment/{rowId}' , 'CartIncrement');
+
+});
+
+});
 
 
 require __DIR__.'/auth.php';
