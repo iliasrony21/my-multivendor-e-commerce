@@ -56,8 +56,8 @@
      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> -->
      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- DataTable -->
-    <link href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+     <!-- DataTable -->
+     <link href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
     <!-- DataTable-->
     <title>vendor Dashboard</title>
 </head>
@@ -104,8 +104,7 @@
 
     <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/bootstrap.bundle.min.js') }}"></script>
-    <!--Datatable-->
-<script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+
 <script src="{{ asset('backend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -117,6 +116,9 @@
      selector: '#mytextarea'
    });
 </script>
+ <!--Datatable-->
+ <script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<!--Datatable-->
 <script>
 		$(document).ready(function() {
 			$('#example').DataTable();
@@ -129,29 +131,7 @@
 		  });
 	  </script>
 
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-        @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type','info') }}"
-        switch(type){
-            case 'info':
-            toastr.info(" {{ Session::get('message') }} ");
-            break;
 
-            case 'success':
-            toastr.success(" {{ Session::get('message') }} ");
-            break;
-
-            case 'warning':
-            toastr.warning(" {{ Session::get('message') }} ");
-            break;
-
-            case 'error':
-            toastr.error(" {{ Session::get('message') }} ");
-            break;
-        }
- @endif
-</script>
 <script>
         jQuery(function(){
             jQuery(document).on('click','.deleted',function(e){

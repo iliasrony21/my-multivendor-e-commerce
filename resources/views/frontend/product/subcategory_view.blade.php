@@ -1,6 +1,10 @@
 @extends('frontend.master')
 @section('userFrontEnd')
 
+@section('title')
+{{ $subcatname->cat->category_name }} >  {{ $subcatname->subcategory_name }} Subcategory
+@endsection
+
         <div class="page-header mt-30 mb-50">
             <div class="container">
                 <div class="archive-header">
@@ -8,7 +12,7 @@
                         <div class="col-xl-3">
                             <h5 class="mb-15">{{ $subcatname->subcategory_name }}</h5>
                             <div class="breadcrumb">
-                                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                                <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                                 <span></span>{{ $subcatname->cat->category_name }}<span></span>{{ $subcatname->subcategory_name }}
                             </div>
                         </div>

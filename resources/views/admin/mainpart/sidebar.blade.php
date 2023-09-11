@@ -114,16 +114,128 @@
 						<div class="menu-title">Shipping Area </div>
 					</a>
 					<ul>
-						<li> <a href="{{ route('all.coupon') }}"><i class="bx bx-right-arrow-alt"></i>All Division</a>
+						<li> <a href="{{ route('all.division') }}"><i class="bx bx-right-arrow-alt"></i>All Division</a>
 						</li>
-						<li> <a href="{{ route('add.coupon') }}"><i class="bx bx-right-arrow-alt"></i>All District</a>
+						<li> <a href="{{ route('add.district') }}"><i class="bx bx-right-arrow-alt"></i>All District</a>
 						</li>
 
-						<li> <a href="{{ route('add.coupon') }}"><i class="bx bx-right-arrow-alt"></i>All State</a>
+						<li> <a href="{{ route('add.state') }}"><i class="bx bx-right-arrow-alt"></i>All State</a>
 						</li>
 
 					</ul>
 				</li>
+                <li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class='bx bx-cart'></i>
+						</div>
+						<div class="menu-title">Order Manage </div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('pending.order') }}"><i class="bx bx-right-arrow-alt"></i>Pending Order</a>
+						</li>
+                        <li> <a href="{{ route('admin.confirmed.order') }}"><i class="bx bx-right-arrow-alt"></i>Confirmed Order</a>
+						</li>
+						<li> <a href="{{ route('admin.processing.order') }}"><i class="bx bx-right-arrow-alt"></i>Processing Order</a>
+						</li>
+						<li> <a href="{{ route('admin.delivered.order') }}"><i class="bx bx-right-arrow-alt"></i>Delivered Order</a>
+						</li>
+
+					</ul>
+				</li>
+                <li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class='bx bx-cart'></i>
+						</div>
+						<div class="menu-title">Return Order </div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('return.request') }}"><i class="bx bx-right-arrow-alt"></i>Return Request</a>
+						</li>
+						<li> <a href="{{ route('complete.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Complete Request</a>
+						</li>
+					</ul>
+				</li>
+                <li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class='bx bx-cart'></i>
+						</div>
+						<div class="menu-title">Report Manage </div>
+					</a>
+					<ul>
+                        <li> <a href="{{ route('report.view') }}"><i class="bx bx-right-arrow-alt"></i>Report View</a>
+						</li>
+                        <li> <a href="{{ route('order.by.user') }}"><i class="bx bx-right-arrow-alt"></i>Order By User</a>
+						</li>
+
+
+					</ul>
+				</li>
+
+	         <li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-category"></i>
+						</div>
+						<div class="menu-title">User Manage</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('all-user') }}"><i class="bx bx-right-arrow-alt"></i>All User</a>
+						</li>
+
+							<li> <a href="{{ route('all-vendor') }}"><i class="bx bx-right-arrow-alt"></i>All Vendor</a>
+						</li>
+
+
+					</ul>
+				</li>
+                <li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-category"></i>
+						</div>
+						<div class="menu-title">Blog Manage</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('admin.blog.category') }}"><i class="bx bx-right-arrow-alt"></i>All Blog Category</a>
+						</li>
+
+							<li> <a href="{{ route('admin.blog.post') }}"><i class="bx bx-right-arrow-alt"></i>All Blog Post</a>
+						</li>
+
+
+					</ul>
+				</li>
+     <li>
+		<a href="javascript:;" class="has-arrow">
+			<div class="parent-icon"><i class="bx bx-category"></i>
+			</div>
+			<div class="menu-title">Review Manage</div>
+		</a>
+		<ul>
+			<li> <a href="{{ route('pending.review') }}"><i class="bx bx-right-arrow-alt"></i>Pending Review</a>
+			</li>
+
+            <li> <a href="{{ route('publish.review') }}"><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
+			</li>
+
+
+
+		</ul>
+	</li>
+    <li>
+    <a href="javascript:;" class="has-arrow">
+			<div class="parent-icon"><i class="bx bx-category"></i>
+			</div>
+			<div class="menu-title">Setting Manage</div>
+		</a>
+		<ul>
+			<li> <a href="{{ route('site.setting') }}"><i class="bx bx-right-arrow-alt"></i>Site Setting</a>
+			</li>
+
+				<li> <a href="{{ route('publish.review') }}"><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
+			</li>
+
+
+		</ul>
+	</li>
 
 			</ul>
 

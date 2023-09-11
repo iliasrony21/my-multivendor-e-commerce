@@ -1,5 +1,8 @@
 @extends('vendor.master')
 @section('vendor')
+  <!-- DataTable -->
+  <link href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+    <!-- DataTable-->
 
 @php
 $id = Auth::user()->id;
@@ -105,4 +108,14 @@ $status = $vendorId->status;
 
 
 			</div>
+            <script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+
+
+            <script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
+	</script>
+<!--Datatable-->
+
 @endSection

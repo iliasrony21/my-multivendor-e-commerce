@@ -1,6 +1,10 @@
 @extends('frontend.master')
 @section('userFrontEnd')
 
+@section('title')
+Home Rony's Shop
+@endsection
+
        @include('frontend.index.slider')
         <!--End hero slider-->
         @include('frontend.index.catslider')
@@ -66,10 +70,27 @@
                                         </div>
                                         <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></h2>
                                         <div class="product-rate-cover">
+
+                                        @php
+                                        $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                        $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                        @endphp
                                             <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
+                                            @if($avarage == 0)
+
+                                                @elseif($avarage == 1 || $avarage < 2)
+                                                <div class="product-rating" style="width: 20%"></div>
+                                                @elseif($avarage == 2 || $avarage < 3)
+                                                <div class="product-rating" style="width: 40%"></div>
+                                                @elseif($avarage == 3 || $avarage < 4)
+                                                <div class="product-rating" style="width: 60%"></div>
+                                                @elseif($avarage == 4 || $avarage < 5)
+                                                <div class="product-rating" style="width: 80%"></div>
+                                                @elseif($avarage == 5 || $avarage < 5)
+                                                <div class="product-rating" style="width: 100%"></div>
+                                                @endif
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                            <span class="font-small ml-5 text-muted"> ({{count($reviewcount)}})</span>
                                         </div>
                                         @if($product->vendor_id == NULL)
                                         <span class="font-small text-muted">By <a href="vendor-details-1.html">Admin</a></span>
@@ -167,10 +188,27 @@
                                         </div>
                                         <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></h2>
                                         <div class="product-rate-cover">
+
+                                        @php
+                                        $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                        $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                        @endphp
                                             <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
+                                            @if($avarage == 0)
+
+                                            @elseif($avarage == 1 || $avarage < 2)
+                                            <div class="product-rating" style="width: 20%"></div>
+                                            @elseif($avarage == 2 || $avarage < 3)
+                                            <div class="product-rating" style="width: 40%"></div>
+                                            @elseif($avarage == 3 || $avarage < 4)
+                                            <div class="product-rating" style="width: 60%"></div>
+                                            @elseif($avarage == 4 || $avarage < 5)
+                                            <div class="product-rating" style="width: 80%"></div>
+                                            @elseif($avarage == 5 || $avarage < 5)
+                                            <div class="product-rating" style="width: 100%"></div>
+                                            @endif
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                            <span class="font-small ml-5 text-muted"> ({{count($reviewcount)}})</span>
                                         </div>
                                         @if($product->vendor_id == NULL)
                                         <span class="font-small text-muted">By <a href="vendor-details-1.html">Admin</a></span>
@@ -267,10 +305,27 @@
                                         </div>
                                         <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></h2>
                                         <div class="product-rate-cover">
+
+                                        @php
+                                            $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                            $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                            @endphp
                                             <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
+                                            @if($avarage == 0)
+
+                                                @elseif($avarage == 1 || $avarage < 2)
+                                                <div class="product-rating" style="width: 20%"></div>
+                                                @elseif($avarage == 2 || $avarage < 3)
+                                                <div class="product-rating" style="width: 40%"></div>
+                                                @elseif($avarage == 3 || $avarage < 4)
+                                                <div class="product-rating" style="width: 60%"></div>
+                                                @elseif($avarage == 4 || $avarage < 5)
+                                                <div class="product-rating" style="width: 80%"></div>
+                                                @elseif($avarage == 5 || $avarage < 5)
+                                                <div class="product-rating" style="width: 100%"></div>
+                                                @endif
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                            <span class="font-small ml-5 text-muted"> ({{count($reviewcount)}})</span>
                                         </div>
                                         @if($product->vendor_id == NULL)
                                         <span class="font-small text-muted">By <a href="vendor-details-1.html">Admin</a></span>
@@ -339,7 +394,30 @@
 
  <!--End Vendor List -->
 
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+<script>
+ @if(Session::has('message'))
+ var type = "{{ Session::get('alert-type','info') }}"
+ switch(type){
+    case 'info':
+    toastr.info(" {{ Session::get('message') }} ");
+    break;
+
+    case 'success':
+    toastr.success(" {{ Session::get('message') }} ");
+    break;
+
+    case 'warning':
+    toastr.warning(" {{ Session::get('message') }} ");
+    break;
+
+    case 'error':
+    toastr.error(" {{ Session::get('message') }} ");
+    break;
+ }
+ @endif
+</script>
 
 
 @endsection

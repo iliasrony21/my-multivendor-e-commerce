@@ -118,11 +118,11 @@
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="shop-cart.html">
                                         <img alt="Nest" src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-cart.svg" />
-                                        <span class="pro-count blue" id="cartQty"></span>
+                                        <span class="pro-count blue" id="cartQty">0</span>
                                     </a>
                                     <a href="{{ route('mycart') }}"><span class="lable">Cart</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                       <!-- minicart start  -->
+                                       <!-- minicart start with ajax -->
                                        <div id="miniCart">
 
                                        </div>
@@ -157,7 +157,7 @@
                                                 <a href="{{route('dashboard')}}"><i class="fi fi-rs-label mr-10"></i>My Voucher</a>
                                             </li>
                                             <li>
-                                                <a href="{{route('dashboard')}}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
+                                                <a href="{{route('wishlist')}}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
                                             </li>
                                             <li>
                                                 <a href="{{route('dashboard')}}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
@@ -165,6 +165,7 @@
 
                                             <form action="{{route('logout')}}" method="POST">
                                                 @csrf
+                                            <li>
                                             <button class="dropdown-item" ><i class='fi fi-rs-sign-out mr-10'></i><span>Logout</span></button>
                                             </li>
                                             </form>
@@ -285,7 +286,7 @@
 
                                     @endforeach
                                     <li>
-                                        <a href="page-contact.html">Contact</a>
+                                    <a href="{{ route('home.blog') }}">Blog</a>
                                     </li>
                                 </ul>
                             </nav>

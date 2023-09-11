@@ -1,5 +1,8 @@
 @extends('frontend.master')
 @section('userFrontEnd')
+@section('title')
+{{ $catname->category_name }}  Category
+@endsection
 
         <div class="page-header mt-30 mb-50">
             <div class="container">
@@ -213,7 +216,7 @@
                             <span>Oganic</span>
                             <h4>
                                 Save 17% <br />
-                                on <span class="text-brand">Oganic</span><br />
+                                on <span class="text-brand">Organic</span><br />
                                 Juice
                             </h4>
                         </div>

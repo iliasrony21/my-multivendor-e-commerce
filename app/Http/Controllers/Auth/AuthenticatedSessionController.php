@@ -28,6 +28,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $notification = array(
+            'message' => 'Login Successfully',
+            'alert-type' => 'success'
+        );
         $customUrl = '';
         if($request->user()->role === 'admin'){
             $customUrl = 'admin/dashboard';
@@ -40,7 +44,7 @@ class AuthenticatedSessionController extends Controller
         }
 
 
-        return redirect()->intended($customUrl);
+        return redirect()->intended($customUrl)->with($notification);
     }
 
     /**
